@@ -1,0 +1,22 @@
+{
+  "name": "dtesting",
+  "image": "charliek/docker-testing:green",
+  "stdin": false,
+  "stdout": true,
+  "stderr": true,
+  "ports": [
+    {
+      "protocol": "tcp",
+      "hostPort": 9090,
+      "containerPort": 9090,
+    }
+  ],
+  "env": {
+    "FOO": "BAR",
+    "VAR2": "value"
+  },
+  "command": [
+    "/bin/echo",
+    "'12345' '6789'"
+  ]
+}

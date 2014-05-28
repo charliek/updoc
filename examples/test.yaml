@@ -1,0 +1,27 @@
+# Figured out in docker api
+name: dtesting
+image: charliek/docker-testing:green
+stdin: false
+stdout: true
+stderr: true
+ports:
+  - host: 9090/tcp
+    container: 9090/tcp
+env:
+  - key: FOO
+    value: "BAR"
+  - key: VAR2
+    value: "value"
+command:
+  - "/bin/echo"
+  - "'12345' '6789'"
+
+# Not figured out
+volumeMounts:
+  - name: vol1
+    readOnly: true
+    path: /mnt/vol1
+  - name: vol2
+    readOnly: false
+    path: /mnt/vol2
+
