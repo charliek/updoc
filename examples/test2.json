@@ -1,0 +1,17 @@
+{
+  "name": "pullreq",
+  "image": "charliek/pullreq",
+  "stdout": true,
+  "ports": [
+    {
+      "protocol": "udp",
+      "hostPort": 22,
+      "containerPort": 22
+    },
+    {
+      "protocol": "tcp",
+      "hostPort": 80,
+      "containerPort": 443
+    }
+  ]
+}
