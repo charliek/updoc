@@ -7,6 +7,8 @@ import (
 	"strings"
 )
 
+const indexUrl = "https://index.docker.io/v1/"
+
 type PortMapping struct {
 	Protocol      string
 	HostPort      uint16
@@ -14,14 +16,16 @@ type PortMapping struct {
 }
 
 type UpdocApp struct {
-	Name    string
-	Image   string
-	Stdin   bool
-	Stdout  bool
-	Stderr  bool
-	Ports   []PortMapping
-	Env     map[string]string
-	Command []string
+	Name     string
+	Registry string
+	Tag      string
+	Image    string
+	Stdin    bool
+	Stdout   bool
+	Stderr   bool
+	Ports    []PortMapping
+	Env      map[string]string
+	Command  []string
 }
 
 type appSlice []*UpdocApp
@@ -57,6 +61,7 @@ func LoadFromDir(dirPath string) (appSlice, error) {
 func AppFromFile(appFile string) (*UpdocApp, error) {
 	var app UpdocApp
 	appBytes, err := ioutil.ReadFile(appFile)
+
 	if err != nil {
 		return nil, fmt.Errorf("Error reading file %s: %v", appFile, err)
 	}
@@ -64,5 +69,14 @@ func AppFromFile(appFile string) (*UpdocApp, error) {
 	if err := json.Unmarshal(appBytes, &app); err != nil {
 		return nil, fmt.Errorf("Error unmarshaling json: %v", err)
 	}
+
+	if app.Registry == "" {
+		app.Registry = indexUrl
+	}
+
+	if app.Tag == "" {
+		app.Tag = "latest"
+	}
+
 	return &app, nil
 }

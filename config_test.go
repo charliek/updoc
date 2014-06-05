@@ -6,11 +6,13 @@ import (
 )
 
 var test1Expected = &UpdocApp{
-	Name:   "dtesting",
-	Image:  "charliek/docker-testing:green",
-	Stdin:  false,
-	Stdout: true,
-	Stderr: true,
+	Name:     "dtesting",
+	Image:    "charliek/docker-testing",
+	Tag:      "green",
+	Registry: indexUrl,
+	Stdin:    false,
+	Stdout:   true,
+	Stderr:   true,
 	Ports: []PortMapping{
 		PortMapping{
 			Protocol:      "tcp",
@@ -26,11 +28,13 @@ var test1Expected = &UpdocApp{
 }
 
 var test2Expected = &UpdocApp{
-	Name:   "pullreq",
-	Image:  "charliek/pullreq",
-	Stdin:  false,
-	Stdout: true,
-	Stderr: false,
+	Name:     "pullreq",
+	Image:    "charliek/pullreq",
+	Tag:      "latest",
+	Registry: indexUrl,
+	Stdin:    false,
+	Stdout:   true,
+	Stderr:   false,
 	Ports: []PortMapping{
 		PortMapping{
 			Protocol:      "udp",

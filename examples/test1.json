@@ -1,6 +1,7 @@
 {
   "name": "dtesting",
-  "image": "charliek/docker-testing:green",
+  "image": "charliek/docker-testing",
+  "tag": "green",
   "stdin": false,
   "stdout": true,
   "stderr": true,
